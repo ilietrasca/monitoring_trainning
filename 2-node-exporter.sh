@@ -1,7 +1,7 @@
 #!/bin/bash
 NODE_EXPORTER_VERSION="0.18.1"
 #git clone https://github.com/prometheus/node_exporter/releases/download/v${NODE_EXPORTER_VERSION}/node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz
-git clone https://github.com/prometheus/node_exporter/releases/download/v${NODE_EXPORTER_VERSION}/node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz
+wget https://github.com/prometheus/node_exporter/releases/download/v${NODE_EXPORTER_VERSION}/node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz
 tar -xzvf node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz
 cd node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64
 cp node_exporter /usr/local/bin
