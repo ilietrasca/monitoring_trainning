@@ -1,0 +1,34 @@
+###########################
+######  SRE SANDBOX  ######
+######  PROMETHEUS   ######
+###########################
+
+version: "3.1"
+services:
+  prometheus:
+    restart: always
+    image: laurentiutra/prometheus:0.2
+    container_name: prometheus
+    volumes:
+      - /home/ubuntu/monitoring_trainning/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:rw
+      - /home/ubuntu/monitoring_trainning/prometheus/node_exporter.json:/etc/prometheus/node_exporter.json:rw
+    ports:
+      - "9090:9090"
+  app:
+    image: laurentiutra/app:0.4
+    container_name: app
+    restart: always
+    volumes:
+      - /home/ubuntu/monitoring_trainning/app/app.py:/app.py:rw
+    ports:
+      - "8001:8001"
+  grafana:
+    image: laurentiutra/grafana:0.1
+    container_name: grafana
+    restart: always
+    ports:
+       - "3000:3000"
+    volumes:
+      - /home/ubuntu/monitoring_trainning/grafana/provisioning/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml:rw
+#      - /home/ubuntu/monitoring_trainning/grafana/provisioning/dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml:rw
+#      - /home/ubuntu/monitoring_trainning/grafana/dashboards/node-dashboard.json:/var/lib/grafana/node-dashboard.json:rw
